@@ -30,7 +30,11 @@ const DetailsSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   email: String,
-  indosNumber: String
+  indosNumber: String,
+  selectedCategory: String,
+  correctCountFinal: String,
+  incorrectCountFinal: String,
+  totalMarks: String
 });
 
 const Question1 = mongoose.model("imucet", QuestionSchema, "imucet");
@@ -78,14 +82,18 @@ app.get("/api/questions3", async (req, res) => {
 // API endpoint to store user data
 app.post('/api/storeUserData', async (req, res) => {
   try {
-    const { firstName, lastName, email, indosNumber } = req.body;
+    const { firstName, lastName, email, indosNumber, selectedCategory, correctCountFinal, incorrectCountFinal, totalMarks } = req.body;
 
     // Create a new user instance
     const newUser = new Details({
       firstName,
       lastName,
       email,
-      indosNumber
+      indosNumber,
+      selectedCategory,
+      correctCountFinal,
+      incorrectCountFinal,
+      totalMarks
     });
 
     // Save the user to the database
