@@ -40,6 +40,7 @@ const DetailsSchema = new mongoose.Schema({
 const Question1 = mongoose.model("imucet", QuestionSchema, "imucet");
 const Question2 = mongoose.model("dgexit", QuestionSchema, "dgexit");
 const Question3 = mongoose.model("gmdss", QuestionSchema, "gmdss");
+const Question4 = mongoose.model("sponsorship", QuestionSchema, "sponsorship");
 const Details = mongoose.model("userDetails", DetailsSchema, "userDetails");
 
 // Nodemailer transporter
@@ -74,6 +75,15 @@ app.get("/api/questions3", async (req, res) => {
   try {
     const questions3 = await Question3.find();
     res.json(questions3);
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/api/questions4", async (req, res) => {
+  try {
+    const questions4 = await Question4.find();
+    res.json(questions4);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
